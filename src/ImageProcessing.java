@@ -62,3 +62,19 @@ public class ImageProcessing {
 
         twoDToImage(generatedRectangles, "./generated_rect.jpg");
     }
+    // Image Processing Methods
+
+    public static int[][] trimBorders(int[][] imageTwoD, int pixelCount) {
+        if (imageTwoD.length > pixelCount * 2 && imageTwoD[0].length > pixelCount * 2) {
+            int[][] trimmedImg = new int[imageTwoD.length - pixelCount * 2][imageTwoD[0].length - pixelCount * 2];
+            for (int i = 0; i < trimmedImg.length; i++) {
+                for (int j = 0; j < trimmedImg[i].length; j++) {
+                    trimmedImg[i][j] = imageTwoD[i + pixelCount][j + pixelCount];
+                }
+            }
+            return trimmedImg;
+        } else {
+            System.out.println("Cannot trim that many pixels from the given image.");
+            return imageTwoD;
+        }
+    }
